@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>Art Connections · Laboratorio</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script defer src="core.js"></script>
+<script defer src="board.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<main>
+  <header class="masthead"><a class="wordmark" href="./">Daily Games<span> / Art Connections</span></a><span class="edition">Estudio 001</span></header>
+  <section class="intro" aria-labelledby="title">
+    <div><p class="eyebrow">Un pequeño ejercicio de observación</p><h1 id="title">Encuentra lo que las une.</h1></div>
+    <p class="instructions">Forma cuatro filas de cuatro obras. Arrastra para intercambiar. Toca para mirar de cerca.</p>
+  </section>
+  <div class="hint-area"><button id="hint" type="button" aria-controls="hints">Pedir pista · 0/4</button><div id="hints" class="relations" aria-label="Pistas reveladas" aria-live="polite"></div></div>
+  <section class="play-area" aria-label="Tablero de cuatro filas">
+    <div id="board" class="board"></div>
+    <div id="row-results" class="row-results" aria-label="Resultado de cada fila"></div>
+  </section>
+  <div class="toolbar"><div class="secondary-actions"><button id="shuffle" type="button">Mezclar</button><button id="undo" type="button" disabled>Deshacer</button></div><button id="check" class="primary" type="button">Comprobar filas <span aria-hidden="true">↗</span></button></div>
+  <p id="status" class="status" role="status" aria-live="polite">No hay prisa. Empieza por una conexión.</p>
+  <footer><span>Prototipo · grupos provisionales</span><button id="reveal" type="button">Ver propuesta</button></footer>
+  <details class="lab-note"><summary>Sobre esta prueba</summary><p>Se comprueban las agrupaciones propuestas durante la investigación, no todas las relaciones posibles. No hay vidas ni penalizaciones. Las relaciones siguen en evaluación.</p><p>Teclado: Tab para elegir una obra, Enter para ampliarla. Shift + flechas para intercambiarla con la casilla vecina. Las imágenes son referencias de investigación. Puedes consultar la fuente de cada obra en su ficha.</p></details>
+</main>
+<dialog id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-bar"><span id="viewer-title">Obra</span><button id="close-viewer" type="button" aria-label="Cerrar imagen">Cerrar <span aria-hidden="true">×</span></button></div>
+  <div class="art-stage"><img id="full-image" alt=""></div>
+  <div class="viewer-bottom"><button id="previous" type="button" aria-label="Obra anterior">←</button><details id="art-details"><summary>Ver ficha · puede dar pistas</summary><p id="art-title"></p><a id="art-source" target="_blank" rel="noopener noreferrer">Consultar en WikiArt ↗</a><p class="source-warning">Metadatos de investigación; fechas y derechos pendientes de revisión.</p></details><button id="next" type="button" aria-label="Obra siguiente">→</button></div>
+</dialog>
+<noscript>Activa JavaScript para mover las obras.</noscript>
+</body>
+</html>
