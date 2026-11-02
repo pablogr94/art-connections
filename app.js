@@ -1,6 +1,22 @@
 (() => {
   'use strict';
-  const data = window.ART_BOARD;
+  const study = window.StudyRegistry.selectStudy(window.location.search);
+  const data = study.id === '2' ? window.ART_STUDY_002 : window.ART_BOARD;
+  window.ART_BOARD = data;
+  const studySelector = document.querySelector('#study');
+  window.StudyRegistry.studies.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.id;
+    option.textContent = item.label;
+    studySelector.append(option);
+  });
+  studySelector.value = study.id;
+  document.title = `Art Connections · ${study.label}`;
+  studySelector.addEventListener('change', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('study', studySelector.value);
+    window.location.assign(url.href);
+  });
   const model = window.BoardModel;
   const board = document.querySelector('#board');
   const status = document.querySelector('#status');
@@ -11,7 +27,7 @@
   const ids = data.works.map(work => work.id);
   const key = data.id + ':order';
   const hintKey = data.id + ':hints';
-  const hints = ['Un personaje', 'Una fuente de luz', 'Un recurso de perspectiva', 'Un movimiento'];
+  const hints = data.groups.map(group => group.type);
   let hintCount = 0;
   const initial = [0,5,10,15,8,13,2,7,4,1,14,11,12,9,6,3].map(i => ids[i]);
   let order = initial.slice();

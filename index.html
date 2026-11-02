@@ -8,13 +8,16 @@
 <title>Art Connections · Laboratorio</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="study-selector.css">
 <script defer src="core.js"></script>
 <script defer src="board.js"></script>
+<script defer src="studies/002/board.js"></script>
+<script defer src="studies.js"></script>
 <script defer src="app.js"></script>
 </head>
 <body>
 <main>
-  <header class="masthead"><a class="wordmark" href="./">Daily Games<span> / Art Connections</span></a><span class="edition">Estudio 001</span></header>
+  <header class="masthead"><a class="wordmark" href="./">Daily Games<span> / Art Connections</span></a><label class="edition" for="study"><span class="study-label">Elegir estudio</span><select id="study" aria-label="Elegir estudio"></select></label></header>
   <section class="intro" aria-labelledby="title">
     <div><p class="eyebrow">Un pequeño ejercicio de observación</p><h1 id="title">Encuentra lo que las une.</h1></div>
     <p class="instructions">Forma cuatro filas de cuatro obras. Arrastra para intercambiar. Toca para mirar de cerca.</p>
