@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const study = window.StudyRegistry.selectStudy(window.location.search);
-  const data = study.id === '3' ? window.ART_STUDY_003 : study.id === '2' ? window.ART_STUDY_002 : window.ART_BOARD;
+  const data = study.id === '4' ? window.ART_STUDY_004 : study.id === '3' ? window.ART_STUDY_003 : study.id === '2' ? window.ART_STUDY_002 : window.ART_BOARD;
   window.ART_BOARD = data;
   const studySelector = document.querySelector('#study');
   window.StudyRegistry.studies.forEach(item => {
