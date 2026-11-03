@@ -11,17 +11,21 @@
   }
   function checkRows(order, works) {
     if (!validOrder(order, works.map(work => work.id))) return [null, null, null, null];
-    const byId = new Map(works.map(work => [work.id, work.group]));
+    const byId = new Map(works.map(work => [work.id, work.eligibleGroups || [work.group]]));
     return Array.from({length: 4}, (_, row) => {
-      const groups = order.slice(row * 4, row * 4 + 4).map(id => byId.get(id));
-      return groups.every(group => group === groups[0]) ? groups[0] : null;
+      const candidates = order.slice(row * 4, row * 4 + 4).map(id => byId.get(id));
+      return candidates[0].find(group => candidates.every(groups => groups.includes(group))) ?? null;
     });
+  }
+  function isComplete(order, works) {
+    const matches = checkRows(order, works);
+    return matches.every(group => group !== null) && new Set(matches).size === 4;
   }
   function nextHintCount(current, total) {
     const count = Number.isInteger(current) && current >= 0 ? current : 0;
     return Math.min(count + 1, total);
   }
-  const model = { swap, validOrder, checkRows, nextHintCount };
+  const model = { swap, validOrder, checkRows, isComplete, nextHintCount };
   if (typeof module !== 'undefined' && module.exports) module.exports = model;
   else root.BoardModel = model;
 })(typeof window !== 'undefined' ? window : globalThis);

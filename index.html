@@ -12,6 +12,7 @@
 <script defer src="core.js"></script>
 <script defer src="board.js"></script>
 <script defer src="studies/002/board.js"></script>
+<script defer src="studies/003/board.js"></script>
 <script defer src="studies.js"></script>
 <script defer src="app.js"></script>
 </head>
@@ -33,7 +34,7 @@
   <details class="lab-note"><summary>Sobre esta prueba</summary><p>Se comprueban las agrupaciones propuestas durante la investigación, no todas las relaciones posibles. No hay vidas ni penalizaciones. Las relaciones siguen en evaluación.</p><p>Teclado: Tab para elegir una obra, Enter para ampliarla. Shift + flechas para intercambiarla con la casilla vecina. Las imágenes son referencias de investigación. Puedes consultar la fuente de cada obra en su ficha.</p></details>
 </main>
 <dialog id="viewer" aria-labelledby="viewer-title">
-  <div class="viewer-bar"><span id="viewer-title">Obra</span><button id="close-viewer" type="button" aria-label="Cerrar imagen">Cerrar <span aria-hidden="true">×</span></button></div>
+  <div class="viewer-bar"><span id="viewer-title">Obra</span><a id="original-image" hidden target="_blank" rel="noopener noreferrer">Abrir imagen ↗</a><button id="close-viewer" type="button" aria-label="Cerrar imagen">Cerrar <span aria-hidden="true">×</span></button></div>
   <div class="art-stage"><img id="full-image" alt=""></div>
   <div class="viewer-bottom"><button id="previous" type="button" aria-label="Obra anterior">←</button><details id="art-details"><summary>Ver ficha · puede dar pistas</summary><p id="art-title"></p><a id="art-source" target="_blank" rel="noopener noreferrer">Consultar en WikiArt ↗</a><p class="source-warning">Metadatos de investigación; fechas y derechos pendientes de revisión.</p></details><button id="next" type="button" aria-label="Obra siguiente">→</button></div>
 </dialog>

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const study = window.StudyRegistry.selectStudy(window.location.search);
-  const data = study.id === '2' ? window.ART_STUDY_002 : window.ART_BOARD;
+  const data = study.id === '3' ? window.ART_STUDY_003 : study.id === '2' ? window.ART_STUDY_002 : window.ART_BOARD;
   window.ART_BOARD = data;
   const studySelector = document.querySelector('#study');
   window.StudyRegistry.studies.forEach(item => {
@@ -12,6 +12,10 @@
   });
   studySelector.value = study.id;
   document.title = `Art Connections · ${study.label}`;
+  if (data.allowOverlaps) {
+    document.querySelector('.instructions').textContent += ' Hay cruces: una fila válida puede necesitar reajustes para completar las cuatro.';
+    document.querySelector('.lab-note p').textContent = 'Se comprueban las relaciones documentadas, no todas las interpretaciones posibles. Algunas obras encajan en más de una relación. Las filas válidas no se bloquean: reparte las dieciséis obras en cuatro relaciones distintas. No hay vidas ni penalizaciones.';
+  }
   studySelector.addEventListener('change', () => {
     const url = new URL(window.location.href);
     url.searchParams.set('study', studySelector.value);
@@ -113,6 +117,10 @@
     document.querySelector('#art-details').open = false;
     document.querySelector('#art-title').textContent = work.title;
     document.querySelector('#art-source').href = work.source;
+    if (data.allowOverlaps) document.querySelector('#art-source').textContent = 'Consultar fuente ↗';
+    const original = document.querySelector('#original-image');
+    original.hidden = !data.allowOverlaps;
+    original.href = work.image;
   }
   function openViewer(index) {
     viewerInvoker = index;
@@ -223,7 +231,11 @@
     });
     results.classList.add('visible');
     const count = matches.filter(group => group !== null).length;
-    status.textContent = count === 4 ? 'Las cuatro filas coinciden con la propuesta. ¿Las conexiones te convencen?' : `${count} de 4 filas coinciden con la propuesta. No hay penalización: sigue probando.`;
+    status.textContent = model.isComplete(order, data.works)
+      ? 'Las cuatro filas coinciden con la propuesta. ¿Las conexiones te convencen?'
+      : data.allowOverlaps
+        ? `${count} de 4 filas comparten una relación válida. Puedes reajustarlas: completa cuatro relaciones distintas usando todas las obras.`
+        : `${count} de 4 filas coinciden con la propuesta. No hay penalización: sigue probando.`;
   }
   document.querySelector('#check').addEventListener('click', check);
   document.querySelector('#reveal').addEventListener('click', () => {
