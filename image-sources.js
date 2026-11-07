@@ -66,3 +66,10 @@ window.ART_IMAGE_SOURCES = {
     "viewer": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-1114-00-000012-web-PYR.tif/full/!800,800/0/default.jpg"
   }
 };
+// Puzzle 5 reuses 13 exact Puzzle 2 source images; the remaining three
+// fallbacks are byte-for-byte retained assets from the original 007 prototype.
+window.ART_IMAGE_FALLBACKS = Object.fromEntries(window.ART_STUDY_005.works.map(w=>{
+ const retained=window.ART_STUDY_002.works.find(old=>old.sourceImage===w.sourceImage);
+ const local=`studies/005/assets/${w.id}.jpg`;
+ return [w.id,{fallbackThumbnail:retained?.thumb||retained?.image||local,fallbackViewer:retained?.image||local}];
+}));
