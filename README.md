@@ -1,15 +1,15 @@
 # Art Connections — playtest
 
-A small visual grouping prototype. Arrange sixteen artworks into four rows by dragging to swap two tiles. Tap an image to inspect the complete artwork.
+Arrange sixteen artworks into four rows. Drag to exchange two artworks; tap or press Enter to inspect the complete image. Shift + arrow keys exchange adjacent artworks. The viewer's **Original** link opens the reproduction for native browser zoom.
 
-Categories are hidden initially. Each press of **Pedir pista** reveals one category, up to four. Layout and requested hints are saved in the current browser. This is a curated experiment, not a validated daily puzzle; alternative connections may be possible.
+**Submit** checks the current complete arrangement. Anonymous green squares report how many rows agree with one accepted complete solution, without identifying rows or connections. Edits clear the previous feedback; later counts can decrease. There are six unsuccessful submissions available per puzzle. A complete solution wins before spending a try; exhaustion does not reveal answers. All genuine registered eligibility alternatives are retained.
 
-Use the header selector to switch between **Estudio 1**, **Estudio 2** and **Estudio 3**. Direct links use `?study=1`, `?study=2` or `?study=3`; existing links with no query still open Study 1. Each study keeps its own layout and hints, including existing Study 1 progress. Unknown study values fall back to Study 1. Titles and category answers are not shown by the selector.
+Six puzzles are available through previous/next navigation and direct links `?study=1` through `?study=6`. The root and unknown study IDs open Puzzle 1. Existing `?study=4` links still work. Public puzzles 5 and 6 correspond to the retained internal experiments 007 and 009.
 
-Study 3 registers overlapping eligibility: a row of four genuinely matching works is accepted even outside the suggested assignment. Rows do not lock; completing the board requires four distinct relations using all sixteen works. **Abrir imagen** in the Study 3 viewer opens the full reproduction in a new tab for native browser zoom, without revealing artwork metadata. Studies 1 and 2 retain their original board data and single-membership rules.
+Each puzzle saves its own order, tries and checked feedback in this browser. Valid layouts from the old public app migrate without reordering; old hint-disclosure keys remain untouched, although hints are no longer shown in this anonymous UI. A deliberate `?study=N&reset=puzzle` resets only that puzzle once and removes the reset parameter from the address.
 
-Run model, legacy-regression and study-link tests with `node --test tests/*.test.cjs`.
+Images prefer exact remote reproduction URLs already recorded with the original boards. Puzzle 6 uses the retained National Gallery services (800px provider maximum); no higher-resolution promise is made. Puzzle 3 retains five historical local reproductions where no reliable HTTPS image URL was recorded. Existing local assets for Puzzles 1–4 remain byte-for-byte unchanged, and can serve as fallback if their recorded remote image fails. No new artwork images were downloaded for this release. Remote availability may change independently of this site.
 
-Run locally with `python -m http.server 8792`, or open index.html in a modern browser. There are no dependencies or analytics.
+Run retained legacy tests with `node --test tests/*.test.cjs`. Run locally with `python -m http.server 8800`. No package installation, build step, analytics or backend is required. A modern browser is required.
 
-Images reproduce the same research references used in the local playtest. Artwork source links are included in the inspection modal and board.js. Artwork rights are separate from this prototype's code; this repository does not grant rights to third-party artworks or claim that all reproductions are cleared for unrestricted reuse.
+This remains a curated playtest, not a validated daily puzzle. Exact source metadata is retained in the board data. Artwork and reproduction rights are separate from this code; making an image accessible or linking to it does not establish unrestricted reuse rights. The locally bundled Material Symbols font is distributed with its license in `assets/Material-Symbols-LICENSE.txt`.
