@@ -1,6 +1,6 @@
 'use strict';
 const study=StudyRegistry.selectStudy(location.search);
-const rawBoards=[window.ART_BOARD,window.ART_STUDY_002,window.ART_STUDY_003,window.ART_STUDY_004,window.ART_STUDY_005,window.ART_STUDY_006];
+const rawBoards=[window.ART_BOARD,window.ART_STUDY_002,window.ART_STUDY_003,window.ART_STUDY_004,window.ART_STUDY_005,window.ART_STUDY_006,window.ART_STUDY_007];
 const board=PuzzleAdapter.normalize(rawBoards[Number(study.id)-1]),M=Connections,storageKey=PuzzlePersistence.key(board);
 const $=s=>document.querySelector(s),sources=PuzzleAdapter.imageSources(board,study.id==='6'?window.ART_IMAGE_SOURCES:{});
 for(const [id,fallback] of Object.entries(window.ART_IMAGE_FALLBACKS||{}))if(sources[id])Object.assign(sources[id],fallback);
@@ -22,7 +22,7 @@ const puzzleNav=$('.puzzles');puzzleNav.replaceChildren();
 for(const delta of [-1,0,1]){
  const id=Number(study.id)+delta;
  if(delta===0){const label=document.createElement('span');label.textContent=study.id;label.setAttribute('aria-label',`Puzzle ${study.id}`);puzzleNav.append(label);continue;}
- const available=id>=1&&id<=6,el=document.createElement(available?'a':'button');
+ const available=id>=1&&id<=StudyRegistry.studies.length,el=document.createElement(available?'a':'button');
  el.setAttribute('aria-label',`${delta<0?'Previous':'Next'} puzzle${available?', '+id:' unavailable'}`);
  if(available){const url=new URL(location.href);url.searchParams.delete('reset');url.searchParams.set('study',String(id));el.href=url.pathname+url.search+url.hash;}else el.disabled=true;
  const icon=document.createElement('span');icon.className='symbol';icon.setAttribute('aria-hidden','true');icon.textContent=delta<0?'chevron_left':'chevron_right';el.append(icon);puzzleNav.append(el);

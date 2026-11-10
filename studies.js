@@ -6,7 +6,8 @@
     Object.freeze({id: '3', label: 'Estudio 3'}),
     Object.freeze({id: '4', label: 'Estudio 4'}),
     Object.freeze({id: '5', label: 'Estudio 5'}),
-    Object.freeze({id: '6', label: 'Estudio 6'})
+    Object.freeze({id: '6', label: 'Estudio 6'}),
+    Object.freeze({id: '7', label: 'Estudio 7'})
   ]);
   function selectStudy(search) {
     const id = new URLSearchParams(search).get('study');
