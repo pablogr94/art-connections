@@ -2,7 +2,7 @@
 const study=StudyRegistry.selectStudy(location.search);
 const rawBoards=[window.ART_BOARD,window.ART_STUDY_002,window.ART_STUDY_003,window.ART_STUDY_004,window.ART_STUDY_005,window.ART_STUDY_006,window.ART_STUDY_007];
 const board=PuzzleAdapter.normalize(rawBoards[Number(study.id)-1]),M=Connections,storageKey=PuzzlePersistence.key(board);
-const $=s=>document.querySelector(s),sources=PuzzleAdapter.imageSources(board,study.id==='6'?window.ART_IMAGE_SOURCES:{});
+const $=s=>document.querySelector(s),sources=PuzzleAdapter.imageSources(board,window.ART_IMAGE_SOURCES_BY_BOARD?.[board.id]||(study.id==='6'?window.ART_IMAGE_SOURCES:{}));
 for(const [id,fallback] of Object.entries(window.ART_IMAGE_FALLBACKS||{}))if(sources[id])Object.assign(sources[id],fallback);
 // Prefer the original service, but do not leave a tile blank through a long
 // connection timeout. Both thumbnails and viewer upgrades use retained copies.

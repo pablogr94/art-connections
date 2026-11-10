@@ -8,7 +8,7 @@ function normalize(raw){
  return {...raw,groups,works};
 }
 function imageSources(board,exact={}){
- return Object.fromEntries(board.works.map(w=>{if(exact[w.id])return [w.id,{...exact[w.id]}];const remote=typeof w.sourceImage==='string'&&w.sourceImage.startsWith('https://')?w.sourceImage:null;return [w.id,{thumbnail:remote||w.thumb||w.image,viewer:remote||w.image,...(remote&&w.image?{fallbackThumbnail:w.thumb||w.image,fallbackViewer:w.image}:{})}];}));
+ return Object.fromEntries(board.works.map(w=>{if(exact[w.id])return [w.id,{...exact[w.id]}];const remote=typeof w.sourceImage==='string'&&w.sourceImage.startsWith('https://')?w.sourceImage:null;const thumbnail=typeof w.sourceThumbnail==='string'&&w.sourceThumbnail.startsWith('https://')?w.sourceThumbnail:null;return [w.id,{thumbnail:thumbnail||remote||w.thumb||w.image,viewer:remote||w.image,...(remote&&w.image?{fallbackThumbnail:w.thumb||w.image,fallbackViewer:w.image}:{})}];}));
 }
 const api={normalize,imageSources};if(typeof module!=='undefined')module.exports=api;else root.PuzzleAdapter=api;
 })(globalThis);
