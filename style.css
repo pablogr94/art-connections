@@ -35,4 +35,6 @@ body{overflow-x:clip}
 #viewer-status{z-index:2}
 #viewer-status{position:absolute;bottom:44px;left:12px;right:12px;text-align:center;font-size:13px}
 
+#viewer,#full-image{touch-action:none}#full-image{transform-origin:center;user-select:none;-webkit-user-select:none;cursor:grab}#full-image[data-zoom="1"]{cursor:default}
+#hints{max-width:520px;margin:16px auto 0;padding-left:26px;font-size:14px;line-height:1.5;color:#d4d8d0}#hints li+li{margin-top:8px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
